@@ -44,7 +44,7 @@ def clear_console():
 
 # Returns to the main menu
 def return_to_main():
-    input("Press ENTER to return to the MAIN MENU")
+    input("Press ENTER to return to the MAIN MENU ")
     clear_console()
     main()
 
