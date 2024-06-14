@@ -1,17 +1,19 @@
-'''
+"""
 Code In Place Final Project:
-The application is a console baseds student grade tracking system.
+
+The application is a console based student grade tracking system.
 It is used to track student exam scores for a single class.
-For each student the following data is collected:
-student_id - a unique identifier for each student
-student name - full name of the student
-exam_1 through exam_4 - stores a score for each exam per student
 
-A menu system is used to navigate thorugh the system to retrieve, display and update data.
+Assumptions:
 
-Data is saved into a file using JSON format for persistence offline'''
+All student numbers and names have been entered for the class.
+There are 4 exams per student and default scores are set to None at start
 
-# Handles JSON format data
+A menu system is used to navigate thorugh the system to display and update data.
+
+Data is saved into a file using JSON format for persistence offline
+"""
+
 import json
 import sys
 import os
@@ -25,17 +27,17 @@ def main():
     header()
     user_selection = main_menu()
 
-    if user_selection == '1':
+    if user_selection == "1":
         list_students(student_records, True)
         return_to_main()
-    elif user_selection == '2':
+    elif user_selection == "2":
         update_student_record(student_records)
-    elif user_selection == '3':
-        sys.exit("Quitting")
+    elif user_selection == "3":
+        sys.exit("Program Ended!")
 
 # Clears the console window
 def clear_console():
-    if os.name =='nt':
+    if os.name == "nt":
         os.system("cls")
     else:
         os.system("clear")
@@ -63,19 +65,19 @@ def update_student_record(records):
 
     exam_selection = input("\nSelect exam to update score (1, 2, 3, 4): ")
 
-    while exam_selection not in ['1', '2', '3', '4', '5', '6']:
+    while exam_selection not in ["1", "2", "3", "4", "5", "6"]:
         print(exam_selection,"is not a valid selection")
         exam_selection = input("Select exam to update score (1, 2, 3, 4): ")
 
-    if exam_selection =='5':
+    if exam_selection == "5":
         update_student_record(records)
-    elif exam_selection == '6':
+    elif exam_selection == "6":
         main()
     else:
         exam_number = "exam_" + exam_selection
         update_exam_record(records, student, exam_number)
 
-# makes changes to student exam record
+# Makes changes to specific student exam record
 def update_exam_record(student_records,student, exam):
     print("Updating", exam, "for student", student.upper())
     score = input("Enter the score for " + exam + ": ")
@@ -131,8 +133,8 @@ def main_menu():
     print("2. Update Student Record")
     print("3. Quit")
     print()
-    
-    while selected_option not in ['1', '2', '3']:
+
+    while selected_option not in ["1", "2", "3"]:
         selected_option = input("Select an option: ")
 
     return selected_option
@@ -141,6 +143,5 @@ def header():
     print("STUDENT EXAM RECORD TRACKER")
 
 
-# Python boilerplate.
 if __name__ == '__main__':
     main()
